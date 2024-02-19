@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Устройство бронетанкового вооружения и техники</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        background-color: #f8f9fa;
+      }
+      #menu {
+        display: flex;
+        gap: 55px;
+      }
+      #qr_code {
+        text-align: center;
+      }
+      h1 {
+        margin-bottom: 20px;
+      }
+      ul {
+        list-style-type: none;
+        padding: 0;
+      }
+      li {
+        margin-bottom: 10px;
+      }
+      a {
+        text-decoration: none;
+        color: #007bff;
+        transition: color 0.3s ease;
+      }
+      a:hover {
+        color: #0056b3;
+      }
+      .completed {
+        color: green;
+      }
+    </style>
+    <script src="https://cdn.jsdelivr.net/gh/davidshimjs/qrcodejs/qrcode.min.js"></script>
+  </head>
+  <body>
+
+    <h1 id="pageTitle">Устройство бронетанкового вооружения и техники</h1>
+
+    <div id="qr_code"></div>
+
+    <script>
+      const pageTitle = 'Устройство бронетанкового вооружения и техники';
+
+      const curStorage = localStorage.getItem('pageTitle') || '';
+      const isCompleted = curStorage.includes(pageTitle);
+      if (isCompleted) {
+        document.getElementById('pageTitle').classList.add('completed');
+        document.getElementById('pageTitle').textContent += ' - Пройдено';
+      } else {
+        localStorage.setItem('pageTitle', curStorage + pageTitle);
+      }
+
+      const links = [
+        'https://forms.yandex.ru/cloud/65d3734ef47e7316276800f9/',
+        'https://forms.yandex.ru/cloud/65d37b9cf47e73176b680100/',
+        'https://forms.yandex.ru/cloud/65d3734ee010db15eb7ff5ec/',
+      ];
+
+      const randomIndex = Math.floor(Math.random() * links.length);
+      const randomLink = links[randomIndex];
+
+      var qrcode = new QRCode('qr_code', {
+        text: randomLink,
+        width: 200,
+        height: 200,
+        colorDark: '#000000',
+        colorLight: '#ffffff',
+        correctLevel: QRCode.CorrectLevel.H,
+      });
+
+      const linkText = document.createElement('p');
+      const link = document.createElement('a');
+      link.href = randomLink;
+      link.target = '_blank';
+      link.textContent = 'Перейти по ссылке';
+      linkText.appendChild(link);
+      document.body.appendChild(linkText);
+    </script>
+  </body>
+</html>
+ /index10.html
